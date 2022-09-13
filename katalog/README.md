@@ -25,17 +25,19 @@ Walaupun demikian, kita dapat membuat aplikasi Django tanpa menggunakan _virtual
 Mengimplementasikan konsep MVT (Model-View-Template) pada folder ini (**katalog**):
 
 1. Membuat sebuah fungsi pada file `views.py`
-   Pertama, buat sebuah fungsi index dengan parameter _request_. Karena di dalam folder `templates` terdapat berkas HTML, artinya kita perlu memetakan hasil _request_ _client_ ke dalam _template_ HTML untuk menampilkan data.
 
-   Pada tugas ini, kita perlu menampilkan data `nama`, `NPM`, dan `catalog items`. Untuk me _render_ _response_ terdapat fungsi bawaan Django yaitu: `render`. Menambahkan kode seperti berikut:
+   Pertama, buat sebuah fungsi index dengan parameter _request_. Karena di dalam folder **templates** terdapat berkas HTML, artinya kita perlu memetakan hasil _request_ _client_ ke dalam _template_ HTML untuk menampilkan data.
+
+   Pada tugas ini, kita perlu menampilkan data `nama`, `student_id`, dan `catalog_items`. Untuk me _render_ _response_ terdapat fungsi bawaan Django yaitu: `render`. Menambahkan kode seperti berikut:
 
    ```
    return render(request=request, template_name="katalog.html", context=context)
    ```
 
-   kita perlu memberikan 3 parameter untuk keperluan ini, yaitu: parameter pertama adalah _request_ diisi dengan _request_ yang didapat dari argumen fungsi yang sudah dibuat, parameter kedua adalah _template_name_ diisi dengan nama berkas HTML yang ingin digunakan yaitu `katalog.html`, dan parameter terakhir adalah _context_ diisi dengan _dictionary_ yang menyimpan `nama`, `NPM`, dan `catalog items`. Dikarenakan kita perlu melakukan _query_ ke _database_, maka value dari key `catalog items` diambil dari hasil _query_ pada models.
+   kita perlu memberikan 3 parameter untuk keperluan ini, yaitu: parameter pertama adalah _request_ diisi dengan _request_ yang didapat dari argumen fungsi yang sudah dibuat, parameter kedua adalah _template_name_ diisi dengan nama berkas HTML yang ingin digunakan yaitu `katalog.html`, dan parameter terakhir adalah _context_ diisi dengan _dictionary_ yang menyimpan `nama`, `student_id`, dan `catalog_items`. Dikarenakan kita perlu melakukan _query_ ke _database_, maka value dari key `catalog items` diambil dari hasil _query_ pada models.
 
 2. Membuat routing pada file `urls.py`
+
    Pertama, konfigurasi file tersebut di folder `project_django` untuk menambahkan semua url dari `urls.py` pada direktori app **katalog** ke `urls.py` di direktori utama (**project_django**) dengan menambahkan kode seperti berikut:
 
    ```
@@ -52,12 +54,16 @@ Mengimplementasikan konsep MVT (Model-View-Template) pada folder ini (**katalog*
 
    Pada parameter kedua kita memilih fungsi mana yang akan dieksekusi oleh route. Pada kasus ini, fungsi `index` yang sudah dibuat tadi. Untuk parameter ketiga digunakan untuk merujuk ke suatu fungsi tertentu yang digunakan di html.
 
-3. Memetakan data ke dalam berkas HTML di dalam folder `templates`
+3. Memetakan data ke dalam berkas HTML di dalam folder **templates**
+
    Di dalam file `katalog.html` kita dapat menggunakan _template engines_ `jinja` untuk menampilkan data dari `context` yang sudah di berikan pada parameter ketiga. Sebagai contoh: key nama dalam `context` dapat digunakan di berkas HTML dengan cara:
+
    ```
    <p>{{name}}</p>
    ```
-   maka value dari key nama akan di render di halaman web.
+
+   maka value dari key nama akan dirender di halaman web.
+
 4. Melakukan _deployment_
    Pada template GitHub untuk tugas ini, sudah terdapat konfigurasi untuk melakukan _deployment_ ke Heroku. Pada tahap ini, saya menggunakan heroku CLI untuk mengkonfigurasi semua hal terkait _deployment_. Langkah-langkah konfigurasinya sebagai berikut:
 
