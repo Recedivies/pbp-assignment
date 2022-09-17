@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Watch List</title>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <th>Watched</th>
+        <th>Title</th>
+        <th>Review</th>
+        <th>Rating</th>
+        <th>Release Date</th>
+      </tr>
+      {% for movie in watch_list %}
+      <tr>
+        <th>{{movie.watched}}</th>
+        <th>{{movie.title}}</th>
+        <th>{{movie.review}}</th>
+        <th>{{movie.rating}}</th>
+        <th>{{movie.release_date}}</th>
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>

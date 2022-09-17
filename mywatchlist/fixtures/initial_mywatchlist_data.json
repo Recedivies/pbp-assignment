@@ -1,0 +1,112 @@
+[
+  {
+    "model": "mywatchlist.mywatchlist",
+    "pk": 1,
+    "fields": {
+      "watched": false,
+      "title": "Gone girl",
+      "rating": 5,
+      "release_date": "2014-10-03",
+      "review": "-"
+    }
+  },
+  {
+    "model": "mywatchlist.mywatchlist",
+    "pk": 2,
+    "fields": {
+      "watched": true,
+      "title": "Bullet Train",
+      "rating": 5,
+      "release_date": "2022-08-10",
+      "review": "It got action, comedy, and intense moments that just blend together to make this wonderful movie."
+    }
+  },
+  {
+    "model": "mywatchlist.mywatchlist",
+    "pk": 3,
+    "fields": {
+      "watched": true,
+      "title": "KKN di Desa Penari",
+      "rating": 4,
+      "release_date": "2022-04-30",
+      "review": "you can gain a lot of good message to this, e.g. should not behave arbitrarily in someone's village and we must respect other cultures. (dimana tanah dipijak disitu langit dijunjung)"
+    }
+  },
+  {
+    "model": "mywatchlist.mywatchlist",
+    "pk": 4,
+    "fields": {
+      "watched": false,
+      "title": "Interstellar",
+      "rating": 5,
+      "release_date": "2014-11-06",
+      "review": "-"
+    }
+  },
+  {
+    "model": "mywatchlist.mywatchlist",
+    "pk": 5,
+    "fields": {
+      "watched": false,
+      "title": "Finest Hours",
+      "rating": 5,
+      "release_date": "2016-01-29",
+      "review": "-"
+    }
+  },
+  {
+    "model": "mywatchlist.mywatchlist",
+    "pk": 6,
+    "fields": {
+      "watched": true,
+      "title": "Bad Genius",
+      "rating": 5,
+      "release_date": "2017-08-23",
+      "review": "you can gain a lot of key lesson from this movie, e.g. money makes the world go round."
+    }
+  },
+  {
+    "model": "mywatchlist.mywatchlist",
+    "pk": 7,
+    "fields": {
+      "watched": true,
+      "title": "Thor: Love and Thunder",
+      "rating": 3,
+      "release_date": "2022-07-06",
+      "review": "was an emotional and powerful story, but slowly turned everything into a joke."
+    }
+  },
+  {
+    "model": "mywatchlist.mywatchlist",
+    "pk": 8,
+    "fields": {
+      "watched": false,
+      "title": "The Queen's Gambit",
+      "rating": 5,
+      "release_date": "2020-10-23",
+      "review": "-"
+    }
+  },
+  {
+    "model": "mywatchlist.mywatchlist",
+    "pk": 9,
+    "fields": {
+      "watched": false,
+      "title": "Dune",
+      "rating": 5,
+      "release_date": "2021-10-13",
+      "review": "-"
+    }
+  },
+  {
+    "model": "mywatchlist.mywatchlist",
+    "pk": 10,
+    "fields": {
+      "watched": true,
+      "title": "Jumanji: Welcome to the Jungle",
+      "rating": 5,
+      "release_date": "2017-12-20",
+      "review": "Fantasy, action, comedy, and romance in one package"
+    }
+  }
+]
