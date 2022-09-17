@@ -6,7 +6,17 @@ from mywatchlist.models import MyWatchList
 # Create your views here.
 def show_html(request):
     data = MyWatchList.objects.all()
-    return render(request, "mywatchlist.html", {"watch_list": data})
+    total_data = data.count()
+    total_watched = MyWatchList.objects.filter(watched=True).count()
+    return render(
+        request,
+        "mywatchlist.html",
+        {
+            "watch_list": data,
+            "total_data": total_data,
+            "total_watched": total_watched * 2,
+        },
+    )
 
 
 def show_xml(request):
