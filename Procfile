@@ -1,2 +1,2 @@
-release: sh -c 'python manage.py migrate; find -L . -name "*.json" -exec python manage.py loaddata {} \; python manage.py seed --mode=refresh;'
+release: sh -c 'python manage.py migrate; python manage.py loaddata */fixtures/*.json; python manage.py seed --mode=refresh;'
 web: gunicorn project_django.wsgi --log-file -
