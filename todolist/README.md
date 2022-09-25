@@ -146,8 +146,8 @@ Membuat file `urls.py` untuk memetakan fungsi yang telah dibuat pada langkah seb
 urlpatterns = [
     path("", show_todolist, name="show_todolist"),
     path("create-task/", create_task, name="create-task"),
-    path("update-task/<int:pk>", update_task, name="update-task"),
-    path("delete-task/<int:pk>", delete_task, name="delete-task"),
+    path("update-task/<int:pk>/", update_task, name="update-task"),
+    path("delete-task/<int:pk>/", delete_task, name="delete-task"),
     path("register/", register, name="register"),
     path("login/", login_user, name="login"),
     path("logout/", logout_user, name="logout"),
