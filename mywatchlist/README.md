@@ -114,7 +114,7 @@ class MyWatchList(models.Model):
     review = models.TextField()
 ```
 
-Terdapat 5 attribut, yang pertama `watched`, field yang tepat untuk menentukan apakah sudah ditonton atau belum adalah **BooleanField**. Kedua, `title`, field yang tepat adalah **CharField** yang biasanya di-_setting_ max nya adalah 255 berhubung judul tidak bakal lebih dari itu. Ketiga, ada `rating`, field nya adalah **IntegerField** dengan menambahkan sebuah _validator_ untuk memastikan yang terisi ke database hanya boleh dalam rentang 1 sampai 5. Keempat, ada `release_date`, fieldnya adalah **DateField** yang cocok untuk mencatat tahub-bulan-tanggal tanpa ada _time_ nya. Terakhir ada `review`, field yang tepat adalah **TextField** karena kita tidak tahu pasti berapa panjang string yang akan dimasukkan nantinya.
+Terdapat 5 attribut, yang pertama `watched`, field yang tepat untuk menentukan apakah sudah ditonton atau belum adalah **BooleanField**. Kedua, `title`, field yang tepat adalah **CharField** yang biasanya di-_setting_ max nya adalah 255 berhubung judul tidak bakal lebih dari itu. Ketiga, ada `rating`, field nya adalah **IntegerField** dengan menambahkan sebuah _validator_ untuk memastikan yang terisi ke database hanya boleh dalam rentang 1 sampai 5. Keempat, ada `release_date`, fieldnya adalah **DateField** yang cocok untuk mencatat tahun-bulan-tanggal tanpa ada _time_ nya. Terakhir ada `review`, field yang tepat adalah **TextField** karena kita tidak tahu pasti berapa panjang string yang akan dimasukkan nantinya.
 
 Setelah itu, buat migrasi skema model. Kemudian, jalankan migrate untuk menerapkan skema model tadi ke _database_
 
