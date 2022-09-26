@@ -12,7 +12,7 @@ CSRF token adalah suatu token aman yang acak yang digunakan untuk mencegah dari 
 
 ## Membuat elemen `<form>` secara manual
 
-membuat elemen `<form>` dapat dilakukan secara manual tanpa menggunakan `{{form.as_table}}`. Caranya:
+membuat `<form>` dapat dilakukan secara manual tanpa menggunakan `{{form.as_table}}`. Caranya:
 membuat semua field yang ingin diinput oleh pengguna dengan tag `<input type="<menyesuaikan fieldnya>"/>` beserta text fieldnya. Kemudian, di bagian paling bawah pengisian form, diberi sebuah tag `<input type="submit"/>` yang digunakan sebagai submisi dari field yang telah diisi dalam formulir.
 
 ## Proses alur data
