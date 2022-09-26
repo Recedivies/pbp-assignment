@@ -6,13 +6,13 @@
 
 Repositori ini telah di-_deploy_ ke Heroku. Anda dapat mengunjungi [di sini](https://pbp-tugas2-recedivies.herokuapp.com/).
 
-## Kegunaan {% csrf_token %} pada elemen <form>
+## Kegunaan {% csrf_token %} pada elemen `<form>`
 
-CSRF token adalah suatu token aman yang acak yang digunakan untuk mencegah dari serangan CSRF (Cross Site Request Foreign). CSRF di sini hanya memastikan bahwa hanya formulir yang berasal dari _trusted_ domain yang dapat digunakan untuk membuat suatu formulir. Untuk semua _request_ yang tidak menggunakan HTTP _method_ GET, HEAD, OPTIONs, atau TRACE, maka cookie CSRF harus ada. Apabila tidak ada `{{% csrf_token %}}` pada elemen <form>, maka django akan memberikan pesan _error_ bahwa situs tersebut memerlukan cookie CSRF saat mengirim formulir.
+CSRF token adalah suatu token aman yang acak yang digunakan untuk mencegah dari serangan CSRF (Cross Site Request Foreign). CSRF di sini hanya memastikan bahwa hanya formulir yang berasal dari _trusted_ domain yang dapat digunakan untuk membuat suatu formulir. Untuk semua _request_ yang tidak menggunakan HTTP _method_ GET, HEAD, OPTIONs, atau TRACE, maka cookie CSRF harus ada. Apabila tidak ada `{{% csrf_token %}}` pada elemen `<form>`, maka django akan memberikan pesan _error_ bahwa situs tersebut memerlukan cookie CSRF saat mengirim formulir.
 
-## Membuat elemen <form> secara manual
+## Membuat elemen `<form>` secara manual
 
-membuat elemen <form> dapat dilakukan secara manual tanpa menggunakan `{{form.as_table}}`. Caranya:
+membuat elemen `<form>` dapat dilakukan secara manual tanpa menggunakan `{{form.as_table}}`. Caranya:
 membuat semua field yang ingin diinput oleh pengguna dengan tag `<input type="<menyesuaikan fieldnya>"/>` beserta text fieldnya. Kemudian, di bagian paling bawah pengisian form, diberi sebuah tag `<input type="submit"/>` yang digunakan sebagai submisi dari field yang telah diisi dalam formulir.
 
 ## Proses alur data
