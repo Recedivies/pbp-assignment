@@ -7,47 +7,71 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Todo List</title>
-    <h1>Assignment 4 PBP/PBD</h1>
   </head>
   <body>
-    <h3>Username: {{username}}</h3>
-    <table>
-      <tr>
-        <th>Title</th>
-        <th>Description</th>
-        <th>Created At</th>
-        <th>Status</th>
-      </tr>
-      {% for task in todolist %}
-      <tr>
-        <th>{{task.title}}</th>
-        <th>{{task.description}}</th>
-        <th>{{task.date}}</th>
-        <th>
-          {% if task.is_finished %} Selesai {% else %} Belum Selesai {% endif %}
-        </th>
-        <th>
-          <form method="POST">
-            <button>
-              <a href="{% url 'todolist:update-task' task.id %}"
-                >Update Selesai</a
-              >
-            </button>
-          </form>
-        </th>
-        <th>
-          <button>
-            <a href="{% url 'todolist:delete-task' task.id %}">Hapus</a>
+    <nav class="navbar navbar-expand-lg bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">{{username}}</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+          </ul>
+          <button class="mx-4">
+            <a class="navbar-text" href="{% url 'todolist:logout' %}">Logout</a>
           </button>
-        </th>
-      </tr>
+        </div>
+      </div>
+    </nav>
+
+    <a href="{% url 'todolist:create-task' %}">
+      <button type="button" class="btn btn-secondary mx-4">
+        Tambah Task Baru
+      </button>
+    </a>
+
+    <main class="row mx-6">
+      {% for task in todolist %}
+      <div class="card" style="width: 18rem">
+        <div class="card-body">
+          <h5 class="card-title">{{task.title}}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">
+            Status: {% if task.is_finished %} Selesai {% else %} Belum Selesai
+            {% endif %}
+          </h6>
+          <h6 class="card-subtitle mb-2 text-muted">{{task.date}}</h6>
+          <p class="card-text">{{task.description}}</p>
+          <a
+            class="disabled"
+            href="{% url 'todolist:update-task' task.id %}"
+            card-link
+          >
+            <button class="btn btn-primary">Update Status</button>
+          </a>
+          <a
+            class="disabled"
+            href="{% url 'todolist:delete-task' task.id %}"
+            card-link
+          >
+            <button class="btn btn-danger">Hapus</button>
+          </a>
+        </div>
+      </div>
       {% endfor %}
-    </table>
+    </main>
   </body>
-  <button>
-    <a href="{% url 'todolist:create-task' %}">Tambah Task Baru</a>
-  </button>
-  <button><a href="{% url 'todolist:logout' %}">Logout</a></button>
 </html>
 
 {% endblock content %}

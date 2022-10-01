@@ -2,9 +2,8 @@
 <title>Membuat Task</title>
 {% endblock meta %} {% block content %}
 
-<div class="create-task">
+<div class="create-task" id="form">
   <h1>Formulir Task</h1>
-
   <form method="POST">
     {% csrf_token %}
     <table>

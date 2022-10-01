@@ -173,3 +173,71 @@ Pada template GitHub untuk tugas ini, sudah terdapat konfigurasi untuk melakukan
 ### **9.** Membuat dua akun pengguna dan tiga dummy data menggunakan model `Task`
 
 Pada tahap ini, cara mengimplementasikannya dengan membuat _command_ django `manage.py` baru, gunanya untuk mengautomasi melakukan _seeding_ _dummy_ _data_ ke _database_ saat dideploy ke _Heroku_. Untuk lebih lanjutnya terdapat di file seed.py pada direktori: `project_django` -> `management` -> `commands` -> `seed.py`
+
+<div align="center" style="padding-bottom: 10px">
+<h1>Tugas 5 PBP</h1>
+</div>
+
+## Perbedaan inline, internal, dan external CSS
+
+1. Inline Styles: CSS dimasukkan di dalam tag pembuka HTML dengan _attribute_ `style="<properties:value>;"`.
+
+2. Internal (Embedded) Style Sheet: CSS dibuat di dalam tag `<style>...</style>` di bagian `HEAD` dari dokumen HTML.
+
+3. External Style Sheet: CSS dibuat di file yang terpisah. Untuk memakainya, ditautkan ke berkas HTML melalui tag `<link>` di bagian `HEAD`.
+
+Untuk prioritas, dari nomor 1 memiliki prioritas tertinggi yang diikuti oleh nomor-nomor selanjutnya.
+
+## Tag HTML5
+
+HTML5 menambahkan banyak elemen blok semantik, yang biasanya hanya menggunakan tag `<div>`. Contohnya seperti:
+
+1. `<header>`
+   Elemen dapat digunakan untuk menandai kalau itu merupakan `header` dari halaman web.
+
+2. `<main>`
+   Elemen dapat digunakan untuk menandai konten utama dari halaman web, tidak termasuk `header`, `footer`, dan navigasi menu lainnya. Sebaiknya hanya ada satu tag `main` di berkas HTML.
+
+3. `<section>`
+   Elemen dapat digunakan untuk menandai setiap bagian konten dalam halaman web.
+
+4. `<footer>`
+   Elemen dapat digunakan untuk menandai kalau itu merupakan `footer` dari halaman web.
+
+## CSS Selector
+
+Tipe-tipe CSS Selector yang saya ketahui dan biasanya sering dipakai adalah:
+
+1. `*`
+   Contoh pemakaiannya: `* { }`
+   Selector ini sifatnya universal sehingga berlaku untuk **semua** elements yang ada di HTML.
+
+2. `nama-tag`
+   Contoh pemakaiannya: `h1 { }`
+   Tag Selector, yang berarti hanya berlaku untuk semua elemen tertentu yang dipilih. Untuk contoh di atas, berarti untuk semua elemen `<h1>`.
+
+3. `#nama-id`
+   Contoh pemakaiannya: `#header { }`
+   ID Selector, yang berarti memilih elemen dengan id yang **unik**. Untuk contoh di atas, berarti tag dengan _attribute_ `id="header"`.
+
+4. `.nama-class`
+   Contoh pemakaiannya: `.card { }`
+   Class Selector, yang berarti memilih elemen dengan class. Untuk contoh di atas, berarti tag dengan _attribute_ `class="card"`.
+
+5. `:nama-pseudo`
+   Contoh pemakaiannya: `card:hover { }`
+   Pseudo-Class Selector, yang berarti memilih elemen dengan class dengan didefinisikan _state_ khusus. Untuk contoh di atas, berarti class `card` akan melakukan sesuatu ketika di*hover*(saat kursor berada di atasnya).
+
+## Implementasi Tugas 5
+
+### **1.** Kustomisasi templat untuk halaman login, register, dan create-task
+
+Membuat halaman login, register, dan create-task menjadi di tengah layar. Dengan cara, membuat id `#form` beserta properties-properties yang dibutuhkan di berkas `style.css`.
+
+### **2.** Kustomisasi halaman utama todo list menggunakan _cards_
+
+Membuat Class Selector CSS `.card` di berkas `style.css` untuk mengatur border dan juga margin. Untuk pembuatan `card` nya dapat menggunakan `template` dari Bootstrap dengan class `card`.
+
+### **3.** Membuat keempat halaman yang dikustomisasi menjadi _responsive_
+
+Membuat `Media Query`, pertama pada halaman utama todo list, jika `Media Query` nya kecil, maka akan muncul _hamburger menu_ untuk menampilkan tombol logout. Untuk tasks _card_, secara otomatis _responsive_ dengan menggunakan class bawaan Bootstrap. Untuk ketiga halamannya, dibuat _responsive_ ketika *max-width*nya sudah 600px, maka dapat di*scroll* untuk tetap bisa mengisi formulirnya.
