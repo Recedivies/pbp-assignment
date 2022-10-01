@@ -6,13 +6,13 @@
 
 Repositori ini telah di-_deploy_ ke Heroku. Anda dapat mengunjungi [di sini](https://pbp-tugas2-recedivies.herokuapp.com/).
 
-## Kegunaan {% csrf_token %} pada elemen <form>
+## Kegunaan {% csrf_token %} pada elemen `<form>`
 
-CSRF token adalah suatu token aman yang acak yang digunakan untuk mencegah dari serangan CSRF (Cross Site Request Foreign). CSRF di sini hanya memastikan bahwa hanya formulir yang berasal dari _trusted_ domain yang dapat digunakan untuk membuat suatu formulir. Untuk semua _request_ yang tidak menggunakan HTTP _method_ GET, HEAD, OPTIONs, atau TRACE, maka cookie CSRF harus ada. Apabila tidak ada `{{% csrf_token %}}` pada elemen <form>, maka django akan memberikan pesan _error_ bahwa situs tersebut memerlukan cookie CSRF saat mengirim formulir.
+CSRF token adalah suatu token aman yang acak yang digunakan untuk mencegah dari serangan CSRF (Cross Site Request Foreign). CSRF di sini hanya memastikan bahwa hanya formulir yang berasal dari _trusted_ domain yang dapat digunakan untuk membuat suatu formulir. Untuk semua _request_ yang tidak menggunakan HTTP _method_ GET, HEAD, OPTIONs, atau TRACE, maka cookie CSRF harus ada. Apabila tidak ada `{{% csrf_token %}}` pada elemen `<form>`, maka django akan memberikan pesan _error_ bahwa situs tersebut memerlukan cookie CSRF saat mengirim formulir.
 
-## Membuat elemen <form> secara manual
+## Membuat elemen `<form>` secara manual
 
-membuat elemen <form> dapat dilakukan secara manual tanpa menggunakan `{{form.as_table}}`. Caranya:
+membuat `<form>` dapat dilakukan secara manual tanpa menggunakan `{{form.as_table}}`. Caranya:
 membuat semua field yang ingin diinput oleh pengguna dengan tag `<input type="<menyesuaikan fieldnya>"/>` beserta text fieldnya. Kemudian, di bagian paling bawah pengisian form, diberi sebuah tag `<input type="submit"/>` yang digunakan sebagai submisi dari field yang telah diisi dalam formulir.
 
 ## Proses alur data
@@ -158,7 +158,7 @@ sehingga beberapa fungsi dapat diakses melalui URL di atas.
 
 ### **8.** Melakukan deployment
 
-Pada template GitHub untuk tugas ini, sudah terdapat konfigurasi untuk melakukan _deployment_ ke Heroku. Pada tahap ini, saya menggunakan heroku CLI untuk mengkonfigurasi semua hal terkait _deployment_. Langkah-langkah konfigurasinya sebagai berikut:
+Pada template GitHub untuk tugas ini, sudah terdapat konfigurasi untuk melakukan _deployment_ ke Heroku. Pada tahap ini, saya menggunakan Heroku CLI untuk mengkonfigurasi semua hal terkait _deployment_. Langkah-langkah konfigurasinya sebagai berikut:
 
 - login ke Heroku CLI: `heroku login`
 - Membuat heroku app: `heroku create pbp-tugas2-recedivies`
@@ -172,7 +172,7 @@ Pada template GitHub untuk tugas ini, sudah terdapat konfigurasi untuk melakukan
 
 ### **9.** Membuat dua akun pengguna dan tiga dummy data menggunakan model `Task`
 
-Pada tahap ini, cara mengimplementasikannya dengan membuat _command_ django `manage.py` baru, gunanya untuk mengautomasi melakukan _seeding_ _dummy_ _data_ ke _database_ saat dideploy ke _Heroku_. Untuk lebih lanjutnya terdapat di file seed.py pada direktori: `project_django` -> `management` -> `commands` -> `seed.py`
+Pada tahap ini, cara mengimplementasikannya dengan membuat _custom_ _command_ django `manage.py` baru. Untuk lebih jelasnya terdapat di file seed.py pada direktori: `project_django` -> `management` -> `commands` -> `seed.py`. Nanti pada saat fase _release_ ke Heroku, di `Procfile` dijalankan _command_ `python manage.py seed --mode=refresh` untuk melakukan _seeding_ _dummy_ _data_ di _database server_ Heroku secara otomatis.
 
 <div align="center" style="padding-bottom: 10px">
 <h1>Tugas 5 PBP</h1>
