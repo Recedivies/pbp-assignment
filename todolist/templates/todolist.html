@@ -1,77 +1,141 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %}
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Todo List</title>
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">{{username}}</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarNavAltMarkup"
-          aria-controls="navbarNavAltMarkup"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-          </ul>
-          <button class="mx-4">
-            <a class="navbar-text" href="{% url 'todolist:logout' %}">Logout</a>
-          </button>
-        </div>
-      </div>
-    </nav>
+{% block meta %} 
+  <title>My Todolist</title>
+{% endblock meta %}
 
-    <a href="{% url 'todolist:create-task' %}">
-      <button type="button" class="btn btn-secondary mx-4">
-        Tambah Task Baru
+{% block content %}
+
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">{{username}}</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+      </ul>
+      <button class="mx-4">
+        <a class="navbar-text" href="{% url 'todolist:logout' %}">Logout</a>
       </button>
-    </a>
+    </div>
+  </div>
+</nav>
 
-    <main class="row mx-6">
-      {% for task in todolist %}
-      <div class="card" style="width: 18rem">
-        <div class="card-body">
-          <h5 class="card-title">{{task.title}}</h5>
-          <h6 class="card-subtitle mb-2 text-muted">
-            Status: {% if task.is_finished %} Selesai {% else %} Belum Selesai
-            {% endif %}
-          </h6>
-          <h6 class="card-subtitle mb-2 text-muted">{{task.date}}</h6>
-          <p class="card-text">{{task.description}}</p>
-          <a
-            class="disabled"
-            href="{% url 'todolist:update-task' task.id %}"
-            card-link
-          >
-            <button class="btn btn-primary">Update Status</button>
-          </a>
-          <a
-            class="disabled"
-            href="{% url 'todolist:delete-task' task.id %}"
-            card-link
-          >
-            <button class="btn btn-danger">Hapus</button>
-          </a>
-        </div>
+<button type="button" class="btn btn-secondary mx-4 d-flex justify-content-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Add Task
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Membuat Task</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      {% endfor %}
-    </main>
-  </body>
-</html>
+      <form method="POST" id="form-create-task">
+        <div class="modal-body">
+          {% csrf_token %}
+          <table>
+            {{ form.as_table }}
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          <button id="submit_btn" type="submit" class="btn btn-primary" data-bs-dismiss="modal">Add</button>
+        </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+<main id="todolist" class="row m-6">
+</main>
 
 {% endblock content %}
+
+{% block javascript %}
+  <script>
+    $(document).ready(function () {
+      const addCard = (data) => {
+        const title = data.fields.title;
+        const isFinished = data.fields.is_finished ? "Selesai" : "Belum Selesai";
+        const description = data.fields.description;
+        const date = data.fields.date;
+        const id = data.pk;
+
+        var task = `
+            <div id="${id}-card" class="card" style="width: 18rem">
+              <div class="card-body">
+                <h5 class="card-title">${title}</h5>
+                <h6 id="${id}-card-subtitle" class="card-subtitle mb-2 text-muted">Status: ${isFinished}</h6>
+                <h6 class="card-subtitle mb-2 text-muted">${date}</h6>
+                <p class="card-text">${description}</p>
+                <a class="disabled" card-link>
+                  <button id="${id}-update-task" class="btn btn-primary">Update Status</button>
+                </a>
+                <a class="disabled" card-link>
+                  <button id="${id}-delete-task" type="submit" class="btn btn-danger">Hapus</button>
+                </a>
+              </div>
+            </div>
+            `
+        $("#todolist").append(task);
+      }
+
+      $.get("http://127.0.0.1:8000/todolist/json/", (data) => {
+        for (i = 0; i < data.length; i++) {
+          addCard(data[i]);
+          updateCardHandler(data);
+          deleteCardHandler(data);
+        }
+      });
+
+      $("#form-create-task").submit((e) => {
+        e.preventDefault();
+        $.post("http://127.0.0.1:8000/todolist/add/", {
+          title: $("#id_title").val(),
+          description: $("#id_description").val()
+        }).done((data) => {
+          if (data.status === "created") {
+            addCard(data);
+            updateCardHandler(data);
+            deleteCardHandler(data);
+          }
+        });
+        $("#id_title").val('')
+        $("#id_description").val('')
+      });
+
+      const updateCardHandler = (data) => {
+        const id = data.pk;
+        $(`#${id}-update-task`).click(() => {
+          $.post(`http://127.0.0.1:8000/todolist/update/${id}/`, {
+          }).done(response => {
+            if (response.status === "updated"){
+              const isFinsihed = response.is_finished ? "Selesai" : "Belum Selesai";
+              $(`#${id}-card-subtitle`).text("Status: " + isFinsihed);
+            }
+          })
+        })
+      }
+      
+      const deleteCardHandler = (data) => {
+        const id = data.pk;
+        $(`#${id}-delete-task`).click(() => {
+          $.post(`http://127.0.0.1:8000/todolist/delete/${id}/`, {
+          }).done(response => {
+            if (response.status === "deleted"){
+              $(`#${id}-card`).remove();
+            }
+          })
+        })
+      }
+    });
+  </script>
+{% endblock %}
