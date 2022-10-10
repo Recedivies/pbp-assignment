@@ -88,17 +88,17 @@
         $("#todolist").append(task);
       }
 
-      $.get("http://127.0.0.1:8000/todolist/json/", (data) => {
+      $.get(window.location.href + "json/", (data) => {
         for (i = 0; i < data.length; i++) {
           addCard(data[i]);
-          updateCardHandler(data);
-          deleteCardHandler(data);
+          updateCardHandler(data[i]);
+          deleteCardHandler(data[i]);
         }
       });
 
       $("#form-create-task").submit((e) => {
         e.preventDefault();
-        $.post("http://127.0.0.1:8000/todolist/add/", {
+        $.post(window.location.href + "add/", {
           title: $("#id_title").val(),
           description: $("#id_description").val()
         }).done((data) => {
@@ -115,7 +115,7 @@
       const updateCardHandler = (data) => {
         const id = data.pk;
         $(`#${id}-update-task`).click(() => {
-          $.post(`http://127.0.0.1:8000/todolist/update/${id}/`, {
+          $.post(window.location.href + `update/${id}/`, {
           }).done(response => {
             if (response.status === "updated"){
               const isFinsihed = response.is_finished ? "Selesai" : "Belum Selesai";
@@ -128,7 +128,7 @@
       const deleteCardHandler = (data) => {
         const id = data.pk;
         $(`#${id}-delete-task`).click(() => {
-          $.post(`http://127.0.0.1:8000/todolist/delete/${id}/`, {
+          $.post(window.location.href + `delete/${id}/`, {
           }).done(response => {
             if (response.status === "deleted"){
               $(`#${id}-card`).remove();
